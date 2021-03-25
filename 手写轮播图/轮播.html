@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>轮播</title>
+    <style>
+        .wrap{
+            width: 1190px;
+            height: 540px;
+            position: relative;
+        }
+        .list{
+            width: 1190px;
+            height: 540px;
+            list-style: none;
+            position: relative;
+            padding-left: 0;
+        }
+        .list li{
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+        .btn{
+            width: 50px;
+            height: 100px;
+            position: absolute;
+            top: 220px;
+            z-index: 100;
+        }
+        #goPre{
+            left: 0;
+        }
+        #goNext{
+            right: 0;
+        }
+        .list .active{
+            z-index: 10;
+        }
+        .pointList{
+            padding-left: 0;
+            list-style: none;
+            position: absolute;
+            right: 200px;
+            bottom: 20px;
+            z-index: 1000;
+        }
+        .point{
+            width: 12px;
+            height: 12px;
+            background-color: rgb(0,0,0,0.4);
+            border-radius: 100%;
+            float: left;
+            margin-right: 10px;
+            border: 2px solid rgb(255, 255, 255,0.6);
+            cursor: pointer;
+        }
+        .pointList .active{
+            background-color: red;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <ul class="list">
+            <li class="item active"><img src="./images/Gregory%20Colbert(1)(001).jpg" alt=""></li>
+            <li class="item"><img src="./images/Gregory%20Colbert(2).jpg" alt=""></li>
+            <li class="item"><img src="./images/Gregory%20Colbert(3).jpg" alt=""></li>
+        </ul>
+        <ul class="pointList">
+            <li class="point active" data-index="0"></li>
+            <li class="point" data-index="1"></li>
+            <li class="point" data-index="2"></li>
+        </ul>
+        <button type="button" class="btn" id="goPre"><</button>
+        <button type="button" class="btn" id="goNext">></button>
+    </div>
+</body>
+<script>
+    var items=document.getElementsByClassName('item');
+    var points=document.getElementsByClassName('point');
+    var goPreBtn=document.getElementById('goPre');
+    var goNextBtn=document.getElementById('goNext');
+
+    var index=0;
+    var clearActive=function () {
+        for (var i=0;i<items.length;i++){
+            items[i].className='item';
+        }
+        for (var i=0;i<items.length;i++){
+            points[i].className='point';
+        }
+    };
+
+    var goIndex=function () {
+        clearActive();
+        console.log(index);
+        points[index].className='point active';
+        items[index].className='item active';
+    };
+
+    var goPre=function () {
+        if(index==0){
+            index=2;
+        }else{
+            index--;
+        }
+        goIndex();
+    };
+
+    var goNext=function () {
+        if (index<items.length-1){
+            index++;
+        }
+        else{
+            index=0;
+        }
+        goIndex();
+    };
+
+    goPreBtn.addEventListener('click',function () {
+        goPre();
+    });
+
+    goNextBtn.addEventListener('click',function () {
+        goNext();
+    });
+    for (var i=0;i<points.length;i++){
+        points[i].addEventListener('click',function () {
+            var pointIndex=this.getAttribute('data-index');
+            index=pointIndex;
+            goIndex();
+        })
+    }
+
+</script>
+</html>
