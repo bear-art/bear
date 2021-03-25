@@ -1,0 +1,20 @@
+
+/*进度条*/
+.progress{
+    margin-bottom: 25px;
+}
+/*媒体对象图像*/
+.wh64{
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+}
+/*contact*/
+.contact{
+    margin: 13px 0;
+}
+/*footer*/
+footer{
+    text-align: center;
+    margin-top: 15px;
+}
